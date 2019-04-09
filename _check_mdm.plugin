@@ -11,33 +11,33 @@ from distutils.version import LooseVersion
 # read preferences to know how to alert if there's a problem
 settings_plist = '/Library/MonitoringClient/PluginSupport/_check_mdm_settings.plist'
 base_settings = {
-	'mdm_warning' : 1,
-    'uamdm_warning': 2,
+	'mdm_warning' : 0,
+    'uamdm_warning': 1,
     'PrefPaneVisibility' : True,
 }
 settings = check_settings(base_settings, settings_plist)
 writePlist(settings, settings_plist)
 
 # setup exit alerting variables
-# 0 == None, Notify
-# 1 == Warn, One email
-# 2 == Alert, Continuous emails
+# 0 == None, Alert on website, no email
+# 1 == Warn, Emails once a day, can be muted
+# 2 == Alert, Email everytime the plugin is run, no mute
 if settings['mdm_warning'] == 0:
     # none
     mdm_warn_level = 20
 elif settings['mdm_warning'] == 1:
     # warn
-    mdm_warn_level = 200
+    mdm_warn_level = 2
 else:
     # alert
-    mdm_warn_level = 2
+    mdm_warn_level = 200
 
 if settings['uamdm_warning'] == 0:
     uamdm_warn_level = 20
 elif settings['uamdm_warning'] == 1:
-    uamdm_warn_level = 200
-else:
     uamdm_warn_level = 2
+else:
+    uamdm_warn_level = 200
 
 
 # get macOS version
