@@ -5,6 +5,8 @@ _\_check\_mdm.plist_ is a plist file to define the plugin for Watchman Monitorin
 
 _\_check\_mdm.plugin_ is a python script that, by default, will exit cleanly if the Mac is enrolled in MDM and it's user-approved, exit with a once-a-day alert if not enrolled in MDM, and exit with an alert every time Watchman is run if the Mac is enrolled in MDM but isn't user approved (10.13.4+ only.)
 
+To install the plugin, simply copy the _\_check\_mdm.plist_ and _\_check\_mdm.plugin_ files into `/Library/MonitoringClient/Plugins`.
+
 After installing and running for the first time the alert settings can be configured in System Preferences -> Monitoring Client -> Settings -> Check MDM.
 
 Alternatively the settings can be configured with the CLI `defaults` command:
